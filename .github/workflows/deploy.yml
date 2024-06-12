@@ -1,1 +1,31 @@
 
+name: Deploy to AWS
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install SSH client
+        run: sudo apt-get install openssh-client -y
+
+      - name: Copy files to EC2 instances
+        env:
+          KEY: ${{ secrets.SSH_KEY }}
+          HOST_1: ec2-user@<instance-public-ip-1>
+          HOST_2: ec2-user@<instance-public-ip-2>
+          HOST_3: ec2-user@<instance-public-ip-3>
+        run: |
+          echo "$KEY" > key.pem
+          chmod 400 key.pem
+          scp -o StrictHostKeyChecking=no -i key.pem -r * $HOST_1:/var/www/html/
+          scp -o StrictHostKeyChecking=no -i key.pem -r * $HOST_2:/var/www/html/
+          scp -o StrictHostKeyChecking=no -i key.pem -r * $HOST_3:/var/www/html/
