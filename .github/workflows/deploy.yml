@@ -19,10 +19,10 @@ jobs:
 
       - name: Copy files to EC2 instances
         env:
-          KEY: ${{ secrets.SSH_KEY }}
-          HOST_1: ec2-user@<instance-public-ip-1>
-          HOST_2: ec2-user@<instance-public-ip-2>
-          HOST_3: ec2-user@<instance-public-ip-3>
+          KEY: ${{ ec2-35-94-46-124.us-west-2.compute.amazonaws.com }}
+          HOST_1: ec2-user@35.94.46.124
+          HOST_2: ec2-user@34.217.70.174
+          HOST_3: ec2-user35.167.86.222
         run: |
           echo "$KEY" > key.pem
           chmod 400 key.pem
