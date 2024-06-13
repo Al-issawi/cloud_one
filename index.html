@@ -27,6 +27,14 @@
             </ul>
         </nav>
     </header>
+    <--! codico para mostrar el hostname del instancias EC2---->
+    <section>
+        <div class="container">
+            <h2>Bienvenido a CloudOne</h2>
+            <p>Esta es la página estática de CloudOne hospedada en la instancia EC2 con el hostname:</p>
+            <p><?php echo shell_exec('hostname -f'); ?></p>
+        </div>
+    </section>
     <section id="inicio">
         <br><br>
         <h3 class="centrado1">Somos un grupo apasionado de profesionales y entusiastas dedicados a explorar, aprender y compartir
@@ -93,6 +101,8 @@
         <img src="./img/aws.png" alt="Logo de AWS">
         <h1>CloudOne</h1>
         <div>EC2 response: $(hostname -f)</div>
+        <p>&copy; 2024 CloudOne. Todos los derechos reservados.</p>
+
     </div>
 </footer>
 </html>
